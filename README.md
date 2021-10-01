@@ -33,7 +33,7 @@ Setup line 22 with the coords of your monitor you wish for it to read. (You can 
 
 cap = ImageGrab.grab(all_screens=True, bbox =(2840, -600, 3780, 2000))
 
-Setup line 47 with your sound file you wish to play upon the word being found.
+Setup line 42 with your sound file you wish to play upon the word being found.
 playsound('G:\\Downloads\\1_second_tone.mp3')
 
 ## DEBUG:
