@@ -23,23 +23,30 @@ You must have:
 - cv2
 - PIL
 
-Setup line 12 with keywords you wish to detect.
+Note: Pytesseract can be downloaded from google: [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
 
-Setup line 17 with your path to pytesseract:
+### Config:
 
-pytesseract.pytesseract.tesseract_cmd =r'PATH'
+`keywords` array takes an array of strings to detect.
 
-Setup line 22 with the coords of your monitor you wish for it to read. (You can use ShareX or read DEBUG below for more ways.)
+`pyTessPath` takes a path to your PyTesseract path. 
 
-cap = ImageGrab.grab(all_screens=True, bbox =(2840, -600, 3780, 2000))
+Ex: 
+```
+C:\Users\MyPC\Documents\Tesseract-OCR\tesseract.exe
+```
+`boundingBox` takes the coords of your screen to search. You can use ShareX to get coords using `region capture`. 
 
-Setup line 42 with your sound file you wish to play upon the word being found.
-playsound('G:\\Downloads\\1_second_tone.mp3')
+`sound` is a bool which will play sound or not when text is found. 
+
+`soundFile` is a path to the sound file to play. 
+
+`pauseTime` is the amount of seconds to wait after finding any keyword.
+
+`debug` enables debug mode.
+
+`greyScale` converts the image to greyscale which can help with OCR.
 
 ## DEBUG:
-
-Uncommenting Lines 25-27 will make a pop-up of the captured screen. Useful for setting your boundary box.
-
-Uncommenting line 37 will show you text in console of the parsed words. 
-
-Uncommenting lines 32-34 will convert the photo to greyscale which can sometimes help word processing.
+Enabling Debug mode will show the image captured by ImageGrab. 
+It will also print the words found in the captured image. 
