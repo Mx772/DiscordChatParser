@@ -7,45 +7,48 @@ import pytesseract
 # Image Processing
 import cv2 
 import time
-
 from PIL import ImageGrab 
+
+############################################
+# 			Config Settings
+############################################
+
 keywords = ['Time remaining']
+pyTessPath = r'PATH'
+boundingBox = (2840, -600, 3780, 2000)
+sound = False
+soundFile = 'G:\\Downloads\\1_second_tone.mp3'
+pauseTime = 10
+debug = False
+greyScale = False
+
+############################################
+############################################
 
 def imToString(): 
-
-	# Local path to pytesseract exe
-	# Example: C:\Users\MyPC\Documents\Tesseract-OCR\tesseract.exe
-	pytesseract.pytesseract.tesseract_cmd =r'PATH'
+	pytesseract.pytesseract.tesseract_cmd = pyTessPath
 	while(True): 
-
-		# Set this to coords of your monitor to screenshot & Parse
-		cap = ImageGrab.grab(all_screens=True, bbox =(2840, -600, 3780, 2000))
-
-		# DEBUG | Uncommenting will pop-up screenshot of what is being captured.
-		# cap.show()
-		# cap2 = cv2.cvtColor(nm.array(cap), cv2.COLOR_BGR2GRAY)
-		# cv2.imshow('test', cap2)
-  
+		cap = ImageGrab.grab(all_screens=True, bbox = boundingBox)
 		tesstr = pytesseract.image_to_string(cap, lang ='eng')
-  
-		# DEBUG | Uncommenting will convert photo to greyscale which can aid in word-recognition.
-		# tesstr = pytesseract.image_to_string( 
-		# 		cv2.cvtColor(nm.array(cap), cv2.COLOR_BGR2GRAY), 
-		# 		lang ='eng')
+		if greyScale:
+			tesstr = pytesseract.image_to_string( 
+					cv2.cvtColor(nm.array(cap), cv2.COLOR_BGR2GRAY), 
+					lang ='eng')
+		if debug:
+			print("################# DEBUG: #################")
+			cap.show()
+			print(tesstr)
+			print("################# END DEBUG #################")
 
-		# DEBUG | Uncommenting will print to console parsed words. 
-		# print(tesstr)
-  
 		if any(word in tesstr for word in keywords):
 			print("Found!")
-			# Set to path of sound file.
-			playsound('G:\\Downloads\\1_second_tone.mp3')
+			if sound:
+				playsound(soundFile)
 			print("Waiting 10 seconds")
-			time.sleep(10)
+			time.sleep(pauseTime)
 		else:
 			print("null")
 
-# Calling the function 
 imToString() 
 
     
