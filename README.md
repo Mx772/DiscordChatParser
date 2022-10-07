@@ -37,6 +37,9 @@ C:\Users\MyPC\Documents\Tesseract-OCR\tesseract.exe
 ```
 `boundingBox` takes the coords of your screen to search. You can use ShareX to get coords using `region capture`. 
 
+![image](https://user-images.githubusercontent.com/9059161/194455899-aabd9515-17c0-4240-99e9-f2915c427763.png)
+
+
 `sound` is a bool which will play sound or not when text is found. 
 
 `soundFile` is a path to the sound file to play. 
